@@ -1,0 +1,17 @@
+
+
+- name: Installing Opscenter
+  apt: pkg=opscenter state=installed update-cache=yes
+
+- name: Configuring Opscenter
+  template: src=opscenterd.conf.j2  dest=/etc/opscenter/opscenterd.conf
+  notify:
+    - restart opscenter
+
+- name: create directories
+  file: path=/etc/opscenter/clusters state=directory owner=cassandra group=cassandra
+
+- name: Configuring Cluster
+  template: src=cluster.conf.j2  dest=/etc/opscenter/clusters/Cluster.conf
+  notify:
+    - restart opscenter

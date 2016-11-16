@@ -1,0 +1,523 @@
+bash-3.2$ ansible -i inventory/testing -m ping all -u ubuntu
+10.200.179.181 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+10.200.179.18 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+10.200.179.179 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+10.200.179.171 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+10.200.179.172 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+bash-3.2$ ansible-playbook -i inventory/testing site.yml
+
+PLAY [all] *********************************************************************
+
+TASK [setup] *******************************************************************
+ok: [10.200.179.181]
+ok: [10.200.179.171]
+ok: [10.200.179.18]
+ok: [10.200.179.172]
+ok: [10.200.179.179]
+
+TASK [common : adding oracle java repository] **********************************
+changed: [10.200.179.181]
+changed: [10.200.179.18]
+changed: [10.200.179.179]
+changed: [10.200.179.171]
+changed: [10.200.179.172]
+
+TASK [common : adding datastax enterprise repo] ********************************
+changed: [10.200.179.172]
+changed: [10.200.179.179]
+changed: [10.200.179.18]
+changed: [10.200.179.181]
+changed: [10.200.179.171]
+
+TASK [common : adding datastax repo key] ***************************************
+changed: [10.200.179.181]
+changed: [10.200.179.172]
+changed: [10.200.179.18]
+changed: [10.200.179.179]
+changed: [10.200.179.171]
+
+TASK [common : creating UNIX group] ********************************************
+changed: [10.200.179.179]
+changed: [10.200.179.181]
+changed: [10.200.179.18]
+changed: [10.200.179.171]
+changed: [10.200.179.172]
+
+TASK [common : creating UNIX user] *********************************************
+changed: [10.200.179.171]
+changed: [10.200.179.172]
+changed: [10.200.179.179]
+changed: [10.200.179.18]
+changed: [10.200.179.181]
+
+TASK [common : pam_limits] *****************************************************
+changed: [10.200.179.171]
+changed: [10.200.179.172]
+changed: [10.200.179.179]
+changed: [10.200.179.18]
+changed: [10.200.179.181]
+
+TASK [common : pam_limits] *****************************************************
+changed: [10.200.179.171]
+changed: [10.200.179.18]
+changed: [10.200.179.181]
+changed: [10.200.179.179]
+changed: [10.200.179.172]
+
+TASK [common : pam_limits] *****************************************************
+changed: [10.200.179.18]
+changed: [10.200.179.181]
+changed: [10.200.179.172]
+changed: [10.200.179.171]
+changed: [10.200.179.179]
+
+TASK [common : pam_limits] *****************************************************
+changed: [10.200.179.18]
+changed: [10.200.179.181]
+changed: [10.200.179.172]
+changed: [10.200.179.171]
+changed: [10.200.179.179]
+
+TASK [common : pam_limits] *****************************************************
+changed: [10.200.179.171]
+changed: [10.200.179.18]
+changed: [10.200.179.181]
+changed: [10.200.179.172]
+changed: [10.200.179.179]
+
+TASK [common : pam_limits] *****************************************************
+changed: [10.200.179.181]
+changed: [10.200.179.179]
+changed: [10.200.179.172]
+changed: [10.200.179.171]
+changed: [10.200.179.18]
+
+TASK [common : pam_limits] *****************************************************
+changed: [10.200.179.172]
+changed: [10.200.179.181]
+changed: [10.200.179.18]
+changed: [10.200.179.171]
+changed: [10.200.179.179]
+
+TASK [common : pam_limits] *****************************************************
+changed: [10.200.179.181]
+changed: [10.200.179.18]
+changed: [10.200.179.172]
+changed: [10.200.179.179]
+changed: [10.200.179.171]
+
+TASK [common : Modifying kernel] ***********************************************
+changed: [10.200.179.181]
+changed: [10.200.179.171]
+changed: [10.200.179.18]
+changed: [10.200.179.179]
+changed: [10.200.179.172]
+
+TASK [common : sysctl] *********************************************************
+changed: [10.200.179.181]
+changed: [10.200.179.18]
+changed: [10.200.179.179]
+changed: [10.200.179.171]
+changed: [10.200.179.172]
+
+TASK [common : sysctl] *********************************************************
+changed: [10.200.179.179]
+changed: [10.200.179.181]
+changed: [10.200.179.172]
+changed: [10.200.179.171]
+changed: [10.200.179.18]
+
+TASK [common : sysctl] *********************************************************
+changed: [10.200.179.179]
+changed: [10.200.179.171]
+changed: [10.200.179.18]
+changed: [10.200.179.172]
+changed: [10.200.179.181]
+
+TASK [common : sysctl] *********************************************************
+changed: [10.200.179.181]
+changed: [10.200.179.18]
+changed: [10.200.179.171]
+changed: [10.200.179.179]
+changed: [10.200.179.172]
+
+TASK [common : sysctl] *********************************************************
+changed: [10.200.179.171]
+changed: [10.200.179.18]
+changed: [10.200.179.172]
+changed: [10.200.179.179]
+changed: [10.200.179.181]
+
+TASK [common : sysctl] *********************************************************
+changed: [10.200.179.171]
+changed: [10.200.179.181]
+changed: [10.200.179.172]
+changed: [10.200.179.18]
+changed: [10.200.179.179]
+
+TASK [common : sysctl] *********************************************************
+changed: [10.200.179.181]
+changed: [10.200.179.172]
+changed: [10.200.179.179]
+changed: [10.200.179.18]
+changed: [10.200.179.171]
+
+TASK [common : sysctl] *********************************************************
+changed: [10.200.179.172]
+changed: [10.200.179.18]
+changed: [10.200.179.179]
+changed: [10.200.179.181]
+changed: [10.200.179.171]
+
+TASK [common : installing some useful packages] ********************************
+changed: [10.200.179.172] => (item=[u'git', u'curl', u'vim', u'libssl0.9.8', u'libjna-java', u'sysstat', u'python-software-properties', u'ntp', u'lvm2'])
+changed: [10.200.179.181] => (item=[u'git', u'curl', u'vim', u'libssl0.9.8', u'libjna-java', u'sysstat', u'python-software-properties', u'ntp', u'lvm2'])
+changed: [10.200.179.179] => (item=[u'git', u'curl', u'vim', u'libssl0.9.8', u'libjna-java', u'sysstat', u'python-software-properties', u'ntp', u'lvm2'])
+changed: [10.200.179.171] => (item=[u'git', u'curl', u'vim', u'libssl0.9.8', u'libjna-java', u'sysstat', u'python-software-properties', u'ntp', u'lvm2'])
+changed: [10.200.179.18] => (item=[u'git', u'curl', u'vim', u'libssl0.9.8', u'libjna-java', u'sysstat', u'python-software-properties', u'ntp', u'lvm2'])
+
+TASK [common : Accept Oracle java license] *************************************
+changed: [10.200.179.171]
+changed: [10.200.179.179]
+changed: [10.200.179.18]
+changed: [10.200.179.181]
+changed: [10.200.179.172]
+
+TASK [common : install Oracle java 8] ******************************************
+changed: [10.200.179.181] => (item=[u'oracle-java8-installer', u'ca-certificates', u'oracle-java8-set-default'])
+changed: [10.200.179.172] => (item=[u'oracle-java8-installer', u'ca-certificates', u'oracle-java8-set-default'])
+changed: [10.200.179.171] => (item=[u'oracle-java8-installer', u'ca-certificates', u'oracle-java8-set-default'])
+changed: [10.200.179.179] => (item=[u'oracle-java8-installer', u'ca-certificates', u'oracle-java8-set-default'])
+changed: [10.200.179.18] => (item=[u'oracle-java8-installer', u'ca-certificates', u'oracle-java8-set-default'])
+
+PLAY [seeds] *******************************************************************
+
+TASK [setup] *******************************************************************
+ok: [10.200.179.172]
+
+TASK [db-setup : Create filesystem for /db from /dev/xvdb,/dev/vdc] ************
+skipping: [10.200.179.172]
+
+TASK [db-setup : lvol] *********************************************************
+skipping: [10.200.179.172]
+
+TASK [db-setup : filesystem] ***************************************************
+skipping: [10.200.179.172]
+
+TASK [db-setup : mount] ********************************************************
+skipping: [10.200.179.172]
+
+TASK [db-setup : create directories] *******************************************
+changed: [10.200.179.172] => (item=/usr/share/dse_downloads)
+changed: [10.200.179.172] => (item=/var/log/cassandra)
+changed: [10.200.179.172] => (item=/db/data)
+changed: [10.200.179.172] => (item=/db/commitlog)
+changed: [10.200.179.172] => (item=/db/saved_caches)
+
+TASK [db-setup : downloading DSE versions] *************************************
+changed: [10.200.179.172] => (item=4.8.9)
+changed: [10.200.179.172] => (item=4.8.10)
+changed: [10.200.179.172] => (item=4.8.11)
+changed: [10.200.179.172] => (item=5.0.3)
+
+TASK [db-setup : Extracting DSE versions] **************************************
+changed: [10.200.179.172] => (item=4.8.9)
+changed: [10.200.179.172] => (item=4.8.10)
+changed: [10.200.179.172] => (item=4.8.11)
+changed: [10.200.179.172] => (item=5.0.3)
+
+TASK [db-setup : creating jna symlinks] ****************************************
+changed: [10.200.179.172] => (item=4.8.9)
+changed: [10.200.179.172] => (item=4.8.10)
+changed: [10.200.179.172] => (item=4.8.11)
+changed: [10.200.179.172] => (item=5.0.3)
+
+PLAY [seeds] *******************************************************************
+
+TASK [setup] *******************************************************************
+ok: [10.200.179.179]
+
+TASK [db-setup : Create filesystem for /db from /dev/xvdb,/dev/vdc] ************
+skipping: [10.200.179.179]
+
+TASK [db-setup : lvol] *********************************************************
+skipping: [10.200.179.179]
+
+TASK [db-setup : filesystem] ***************************************************
+skipping: [10.200.179.179]
+
+TASK [db-setup : mount] ********************************************************
+skipping: [10.200.179.179]
+
+TASK [db-setup : create directories] *******************************************
+changed: [10.200.179.179] => (item=/usr/share/dse_downloads)
+changed: [10.200.179.179] => (item=/var/log/cassandra)
+changed: [10.200.179.179] => (item=/db/data)
+changed: [10.200.179.179] => (item=/db/commitlog)
+changed: [10.200.179.179] => (item=/db/saved_caches)
+
+TASK [db-setup : downloading DSE versions] *************************************
+changed: [10.200.179.179] => (item=4.8.9)
+changed: [10.200.179.179] => (item=4.8.10)
+changed: [10.200.179.179] => (item=4.8.11)
+changed: [10.200.179.179] => (item=5.0.3)
+
+TASK [db-setup : Extracting DSE versions] **************************************
+changed: [10.200.179.179] => (item=4.8.9)
+changed: [10.200.179.179] => (item=4.8.10)
+changed: [10.200.179.179] => (item=4.8.11)
+changed: [10.200.179.179] => (item=5.0.3)
+
+TASK [db-setup : creating jna symlinks] ****************************************
+changed: [10.200.179.179] => (item=4.8.9)
+changed: [10.200.179.179] => (item=4.8.10)
+changed: [10.200.179.179] => (item=4.8.11)
+changed: [10.200.179.179] => (item=5.0.3)
+
+PLAY [non_seeds] ***************************************************************
+
+TASK [setup] *******************************************************************
+ok: [10.200.179.181]
+ok: [10.200.179.18]
+
+TASK [db-setup : Create filesystem for /db from /dev/xvdb,/dev/vdc] ************
+skipping: [10.200.179.181]
+skipping: [10.200.179.18]
+
+TASK [db-setup : lvol] *********************************************************
+skipping: [10.200.179.181]
+skipping: [10.200.179.18]
+
+TASK [db-setup : filesystem] ***************************************************
+skipping: [10.200.179.181]
+skipping: [10.200.179.18]
+
+TASK [db-setup : mount] ********************************************************
+skipping: [10.200.179.181]
+skipping: [10.200.179.18]
+
+TASK [db-setup : create directories] *******************************************
+changed: [10.200.179.181] => (item=/usr/share/dse_downloads)
+changed: [10.200.179.18] => (item=/usr/share/dse_downloads)
+changed: [10.200.179.181] => (item=/var/log/cassandra)
+changed: [10.200.179.18] => (item=/var/log/cassandra)
+changed: [10.200.179.181] => (item=/db/data)
+changed: [10.200.179.18] => (item=/db/data)
+changed: [10.200.179.181] => (item=/db/commitlog)
+changed: [10.200.179.18] => (item=/db/commitlog)
+changed: [10.200.179.181] => (item=/db/saved_caches)
+changed: [10.200.179.18] => (item=/db/saved_caches)
+
+TASK [db-setup : downloading DSE versions] *************************************
+changed: [10.200.179.18] => (item=4.8.9)
+changed: [10.200.179.181] => (item=4.8.9)
+changed: [10.200.179.181] => (item=4.8.10)
+changed: [10.200.179.18] => (item=4.8.10)
+changed: [10.200.179.181] => (item=4.8.11)
+changed: [10.200.179.18] => (item=4.8.11)
+changed: [10.200.179.181] => (item=5.0.3)
+changed: [10.200.179.18] => (item=5.0.3)
+
+TASK [db-setup : Extracting DSE versions] **************************************
+changed: [10.200.179.18] => (item=4.8.9)
+changed: [10.200.179.181] => (item=4.8.9)
+changed: [10.200.179.18] => (item=4.8.10)
+changed: [10.200.179.181] => (item=4.8.10)
+changed: [10.200.179.18] => (item=4.8.11)
+changed: [10.200.179.181] => (item=4.8.11)
+changed: [10.200.179.18] => (item=5.0.3)
+changed: [10.200.179.181] => (item=5.0.3)
+
+TASK [db-setup : creating jna symlinks] ****************************************
+changed: [10.200.179.18] => (item=4.8.9)
+changed: [10.200.179.181] => (item=4.8.9)
+changed: [10.200.179.18] => (item=4.8.10)
+changed: [10.200.179.181] => (item=4.8.10)
+changed: [10.200.179.18] => (item=4.8.11)
+changed: [10.200.179.181] => (item=4.8.11)
+changed: [10.200.179.18] => (item=5.0.3)
+changed: [10.200.179.181] => (item=5.0.3)
+
+PLAY [seeds] *******************************************************************
+
+TASK [setup] *******************************************************************
+ok: [10.200.179.172]
+
+TASK [db-configure : Configuring service script for DSE] ***********************
+changed: [10.200.179.172]
+
+TASK [db-configure : file] *****************************************************
+changed: [10.200.179.172]
+
+TASK [db-configure : Configuring DSE 4.8.10] ***********************************
+changed: [10.200.179.172] => (item={u'dest': u'cassandra/conf/cassandra-env.sh', u'src': u'cassandra-env.sh.j2'})
+changed: [10.200.179.172] => (item={u'dest': u'cassandra/conf/cassandra-rackdc.properties', u'src': u'cassandra-rackdc.properties.j2'})
+changed: [10.200.179.172] => (item={u'dest': u'cassandra/conf/cassandra.yaml', u'src': u'cassandra.yaml.j2'})
+
+TASK [db-configure : template] *************************************************
+changed: [10.200.179.172]
+
+TASK [db-configure : Verify DSE 4.8.10 is started] *****************************
+changed: [10.200.179.172]
+
+RUNNING HANDLER [db-configure : restart dse] ***********************************
+changed: [10.200.179.172]
+
+PLAY [seeds] *******************************************************************
+
+TASK [setup] *******************************************************************
+ok: [10.200.179.179]
+
+TASK [db-configure : Configuring service script for DSE] ***********************
+changed: [10.200.179.179]
+
+TASK [db-configure : file] *****************************************************
+changed: [10.200.179.179]
+
+TASK [db-configure : Configuring DSE 4.8.10] ***********************************
+changed: [10.200.179.179] => (item={u'dest': u'cassandra/conf/cassandra-env.sh', u'src': u'cassandra-env.sh.j2'})
+changed: [10.200.179.179] => (item={u'dest': u'cassandra/conf/cassandra-rackdc.properties', u'src': u'cassandra-rackdc.properties.j2'})
+changed: [10.200.179.179] => (item={u'dest': u'cassandra/conf/cassandra.yaml', u'src': u'cassandra.yaml.j2'})
+
+TASK [db-configure : template] *************************************************
+changed: [10.200.179.179]
+
+TASK [db-configure : Verify DSE 4.8.10 is started] *****************************
+changed: [10.200.179.179]
+
+RUNNING HANDLER [db-configure : restart dse] ***********************************
+changed: [10.200.179.179]
+
+PLAY [non_seeds] ***************************************************************
+
+TASK [setup] *******************************************************************
+ok: [10.200.179.181]
+
+TASK [db-configure : Configuring service script for DSE] ***********************
+changed: [10.200.179.181]
+
+TASK [db-configure : file] *****************************************************
+changed: [10.200.179.181]
+
+TASK [db-configure : Configuring DSE 4.8.10] ***********************************
+changed: [10.200.179.181] => (item={u'dest': u'cassandra/conf/cassandra-env.sh', u'src': u'cassandra-env.sh.j2'})
+changed: [10.200.179.181] => (item={u'dest': u'cassandra/conf/cassandra-rackdc.properties', u'src': u'cassandra-rackdc.properties.j2'})
+changed: [10.200.179.181] => (item={u'dest': u'cassandra/conf/cassandra.yaml', u'src': u'cassandra.yaml.j2'})
+
+TASK [db-configure : template] *************************************************
+changed: [10.200.179.181]
+
+TASK [db-configure : Verify DSE 4.8.10 is started] *****************************
+changed: [10.200.179.181]
+
+RUNNING HANDLER [db-configure : restart dse] ***********************************
+changed: [10.200.179.181]
+
+PLAY [non_seeds] ***************************************************************
+
+TASK [setup] *******************************************************************
+ok: [10.200.179.18]
+
+TASK [db-configure : Configuring service script for DSE] ***********************
+changed: [10.200.179.18]
+
+TASK [db-configure : file] *****************************************************
+changed: [10.200.179.18]
+
+TASK [db-configure : Configuring DSE 4.8.10] ***********************************
+changed: [10.200.179.18] => (item={u'dest': u'cassandra/conf/cassandra-env.sh', u'src': u'cassandra-env.sh.j2'})
+changed: [10.200.179.18] => (item={u'dest': u'cassandra/conf/cassandra-rackdc.properties', u'src': u'cassandra-rackdc.properties.j2'})
+changed: [10.200.179.18] => (item={u'dest': u'cassandra/conf/cassandra.yaml', u'src': u'cassandra.yaml.j2'})
+
+TASK [db-configure : template] *************************************************
+changed: [10.200.179.18]
+
+TASK [db-configure : Verify DSE 4.8.10 is started] *****************************
+changed: [10.200.179.18]
+
+RUNNING HANDLER [db-configure : restart dse] ***********************************
+changed: [10.200.179.18]
+
+PLAY [all] *********************************************************************
+
+TASK [setup] *******************************************************************
+ok: [10.200.179.181]
+ok: [10.200.179.18]
+ok: [10.200.179.171]
+ok: [10.200.179.172]
+ok: [10.200.179.179]
+
+TASK [update-cache : Updating facts cache] *************************************
+ok: [10.200.179.171]
+ok: [10.200.179.181]
+ok: [10.200.179.18]
+ok: [10.200.179.172]
+ok: [10.200.179.179]
+
+PLAY [opscenter] ***************************************************************
+
+TASK [setup] *******************************************************************
+ok: [10.200.179.171]
+
+TASK [opscenter : Installing Opscenter] ****************************************
+changed: [10.200.179.171]
+
+TASK [opscenter : Configuring Opscenter] ***************************************
+changed: [10.200.179.171]
+
+TASK [opscenter : create directories] ******************************************
+changed: [10.200.179.171]
+
+TASK [opscenter : Configuring Cluster] *****************************************
+changed: [10.200.179.171]
+
+RUNNING HANDLER [opscenter : restart opscenter] ********************************
+changed: [10.200.179.171]
+
+PLAY [seeds, non_seeds] ********************************************************
+
+TASK [setup] *******************************************************************
+ok: [10.200.179.172]
+ok: [10.200.179.179]
+ok: [10.200.179.181]
+ok: [10.200.179.18]
+
+TASK [agents : Installing DataStax Agent] **************************************
+changed: [10.200.179.172]
+changed: [10.200.179.179]
+changed: [10.200.179.181]
+changed: [10.200.179.18]
+
+TASK [agents : Configuring DataStax Agent] *************************************
+changed: [10.200.179.179]
+changed: [10.200.179.181]
+changed: [10.200.179.18]
+changed: [10.200.179.172]
+
+RUNNING HANDLER [agents : restart agent] ***************************************
+changed: [10.200.179.18]
+changed: [10.200.179.179]
+changed: [10.200.179.181]
+changed: [10.200.179.172]
+
+PLAY RECAP *********************************************************************
+10.200.179.171             : ok=34   changed=30   unreachable=0    failed=0
+10.200.179.172             : ok=44   changed=38   unreachable=0    failed=0
+10.200.179.179             : ok=44   changed=38   unreachable=0    failed=0
+10.200.179.18              : ok=44   changed=38   unreachable=0    failed=0
+10.200.179.181             : ok=44   changed=38   unreachable=0    failed=0   

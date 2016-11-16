@@ -1,0 +1,2 @@
+- name: Updating facts cache
+  ping:

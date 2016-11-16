@@ -1,0 +1,8 @@
+# Handlers for dse related notifications
+
+
+- name: restart dse
+  service: name=dse enabled=yes state=restarted
+
+- name: stop dse
+  service: name=dse enabled=yes state=stopped

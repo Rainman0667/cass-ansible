@@ -1,0 +1,4 @@
+
+ - include: setup.yml
+ - include: configure.yml
+ - include: opscenter.yml

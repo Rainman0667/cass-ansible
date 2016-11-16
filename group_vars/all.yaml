@@ -1,0 +1,55 @@
+#
+# DataStax Academy Credentials for downloading DSE software.
+creds:
+  repo_user: dsuser@somecompany.com
+  repo_pass: password
+
+#
+# OS Specific Variables
+configure_disks: false
+db_disks: "/dev/xvdb,/dev/vdc"
+db_stripes: 2
+limits:
+  memlock: unlimited
+  as: unlimited
+  nproc: 32768
+  nofile: 100000
+
+
+#
+# DSE Specific Variables
+dse_solr: 0
+dse_spark: 0
+dse:
+  stage_versions: ["4.8.9","4.8.10","4.8.11","5.0.3"]
+  active_version: "4.8.10"
+
+# Cassandra Topology
+# defined in the inventory by default configure in an undefined state
+dc: undefined
+rack: rack1
+
+# Cassandra Variables
+java:
+  version: 8
+  max_heap_size: 4G
+  heap_newsize: 800M
+
+cassandra:
+  cluster_name: "Test Cluster"
+  num_tokens: 64
+  concurrent_reads: 32
+  concurrent_writes: 32
+  memtable_flush_writers: 2
+  trickle_fsync: "false"
+  listen_address: "{{ansible_eth0.ipv4.address}}"
+  rpc_address: "{{ansible_eth0.ipv4.address}}"
+  concurrent_compactors: 1
+  compaction_throughput_mb_per_sec: 16
+  endpoint_snitch: GossipingPropertyFileSnitch
+  internode_compression: dc
+
+
+# Opscenter
+opscenter:
+  authentication: true

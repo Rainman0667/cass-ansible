@@ -1,0 +1,22 @@
+
+- name: Configuring service script for DSE
+  template: src=dse.init.j2 dest=/etc/init.d/dse
+  notify:
+     - restart dse
+
+- file: path=/etc/init.d/dse mode="0755"
+
+- name: Configuring DSE {{dse.active_version}}
+  template: src={{dse.active_version}}/{{item.src}} dest=/usr/share/dse-{{dse.active_version}}/resources/{{item.dest}}
+            owner=cassandra group=cassandra
+  with_items:
+     - { src: 'cassandra-env.sh.j2', dest: 'cassandra/conf/cassandra-env.sh' }
+     - { src: 'cassandra-rackdc.properties.j2', dest: 'cassandra/conf/cassandra-rackdc.properties' }
+     - { src: 'cassandra.yaml.j2', dest: 'cassandra/conf/cassandra.yaml' }
+  notify:
+     - restart dse
+
+- template: src=profile.j2 dest=/home/cassandra/.profile owner=cassandra group=cassandra
+
+- name: Verify DSE {{dse.active_version}} is started
+  service: name=dse enabled=yes state=started

@@ -1,0 +1,10 @@
+
+
+- name: Installing DataStax Agent 
+  apt: pkg=datastax-agent state=installed update-cache=yes
+
+- name: Configuring DataStax Agent
+  template: src=address.yaml.j2  dest=/var/lib/datastax-agent/conf/address.yaml owner=cassandra group=cassandra
+  notify:
+  - restart agent
+

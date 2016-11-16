@@ -1,0 +1,40 @@
+- name:  Create filesystem for /db from {{db_disks}}
+  lvg: vg=dbvg pvs={{db_disks}}
+  when: configure_disks
+
+- lvol: vg=dbvg lv=lvoldb size=90%FREE opts="-i {{db_stripes}}  -I 128"
+  when: configure_disks
+
+- filesystem: fstype=ext4 dev=/dev/dbvg/lvoldb
+  when: configure_disks
+
+- mount: name=/db src=/dev/dbvg/lvoldb fstype=ext4  state=mounted
+  when: configure_disks
+
+- name: create directories
+  file: path={{item}} state=directory owner=cassandra group=cassandra
+  with_items:
+    - /usr/share/dse_downloads
+    - /var/log/cassandra
+    - /db/data
+    - /db/commitlog
+    - /db/saved_caches
+
+- name: downloading DSE versions
+  get_url: url=http://downloads.datastax.com/enterprise/dse-{{item}}-bin.tar.gz
+           dest=/usr/share/dse_downloads/dse-{{item}}.tar.gz
+           url_username={{creds.repo_user}}
+           url_password={{creds.repo_pass}}
+           owner=cassandra
+           group=cassandra
+  with_items: "{{dse.stage_versions}}"
+
+- name: Extracting DSE versions
+  unarchive: copy=no src=/usr/share/dse_downloads/dse-{{item}}.tar.gz dest=/usr/share/
+             owner=cassandra group=cassandra
+  with_items: "{{dse.stage_versions}}"
+
+- name: creating jna symlinks
+  file: src=/usr/share/java/jna.jar dest=/usr/share/dse-{{item}}/resources/cassandra/lib/jna.jar
+        state=link owner=cassandra group=cassandra
+  with_items: "{{dse.stage_versions}}"

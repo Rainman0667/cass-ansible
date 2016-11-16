@@ -1,0 +1,11 @@
+
+[opscenter]
+10.200.179.171
+
+[seeds]
+10.200.179.172 dc=DC1
+10.200.179.179 dc=DC1
+
+[non_seeds]
+10.200.179.181 dc=DC1
+10.200.179.18 dc=Analytics dse_spark=1

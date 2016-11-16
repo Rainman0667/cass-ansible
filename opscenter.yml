@@ -1,0 +1,20 @@
+# This playbook deploys and starts Opscenter
+# Configure basics
+# Configure and deploy DSE seed nodes
+- hosts: all
+  remote_user: ubuntu
+  become: true
+  roles:
+  - update-cache
+
+- hosts: opscenter
+  remote_user: ubuntu
+  become: true
+  roles:
+  - opscenter
+
+- hosts: seeds, non_seeds
+  remote_user: ubuntu
+  become: true
+  roles:
+  - agents

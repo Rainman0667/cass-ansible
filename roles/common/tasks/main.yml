@@ -1,0 +1,65 @@
+
+- name: adding oracle java repository
+  apt_repository: repo='ppa:webupd8team/java' state=present
+
+- name: adding datastax enterprise repo
+  template: src=datastax.list.j2 dest=/etc/apt/sources.list.d/datastax.sources.list
+
+- name: adding datastax repo key
+  apt_key: url=https://debian.datastax.com/debian/repo_key state=present
+
+- name: creating UNIX group
+  group: name=cassandra
+
+- name: creating UNIX user
+  user: name=cassandra comment="DSE owner" uid=8500 group=cassandra
+
+- pam_limits: domain=cassandra limit_type=soft limit_item=memlock value={{limits.memlock}}
+- pam_limits: domain=cassandra limit_type=hard limit_item=memlock value={{limits.memlock}}
+- pam_limits: domain=cassandra limit_type=soft limit_item=nofile value={{limits.nofile}}
+- pam_limits: domain=cassandra limit_type=hard limit_item=nofile value={{limits.nofile}}
+- pam_limits: domain=cassandra limit_type=soft limit_item=nproc value={{limits.nproc}}
+- pam_limits: domain=cassandra limit_type=hard limit_item=nproc value={{limits.nproc}}
+- pam_limits: domain=cassandra limit_type=soft limit_item=as value={{limits.as}}
+- pam_limits: domain=cassandra limit_type=hard limit_item=as value={{limits.as}}
+
+- name: Modifying kernel
+  sysctl: name="vm.max_map_count" value=1048575 sysctl_set=yes state=present reload=yes
+
+- sysctl: name="net.core.rmem_max" value=16777216 sysctl_set=yes state=present reload=yes
+- sysctl: name="net.core.wmem_max" value=16777216 sysctl_set=yes state=present reload=yes
+- sysctl: name="net.core.rmem_default" value=16777216 sysctl_set=yes state=present reload=yes
+- sysctl: name="net.core.wmem_default" value=16777216 sysctl_set=yes state=present reload=yes
+- sysctl: name="net.core.optmem_max" value=40960 sysctl_set=yes state=present reload=yes
+- sysctl: name="net.ipv4.tcp_rmem" value="4096 87380 16777216" sysctl_set=yes state=present reload=yes
+- sysctl: name="net.ipv4.tcp_wmem" value="4096 65536 16777216" sysctl_set=yes state=present reload=yes
+- sysctl: name="vm.swappiness" value=1 sysctl_set=yes state=present reload=yes
+
+
+- name: installing some useful packages
+  apt: pkg={{item}} state=installed update-cache=yes
+  with_items:
+  - git
+  - curl
+  - vim
+  - libssl0.9.8
+  - libjna-java
+  - sysstat
+  - python-software-properties
+  - ntp
+  - lvm2
+
+- name: Accept Oracle java license
+  debconf: name='oracle-java{{java.version}}' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+
+#  shell: /bin/echo debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+
+- name: install Oracle java {{java.version}}
+  apt: name={{item}} state=latest
+  with_items:
+  - oracle-java{{java.version}}-installer
+  - ca-certificates
+  - oracle-java{{java.version}}-set-default
+
+#- name: installing oracle java
+#  shell: DEBIAN_FRONTEND=noninteractive apt-get -y install oracle-java{{java.version}}-installer oracle-java{{java.version}}-set-default

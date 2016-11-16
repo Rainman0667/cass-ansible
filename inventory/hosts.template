@@ -1,0 +1,19 @@
+# This is a template file illustrating the three sections of the inventory
+# along with how to pass dc, rack and DSE options for a particular node.
+# Alternaitvely these parameters could be set using host_vars. See the Ansible
+# documentation for details.
+
+[opscenter]
+1.2.6.1
+
+[seeds]
+1.2.3.1 dc=Data1
+1.2.3.2 dc=Data2 rack=rack1
+
+[non_seeds]
+1.2.4.1 dc=Data1
+1.2.4.2 dc=Data1
+1.2.4.3 dc=Data1
+1.2.5.1 dc=Data2 rack=rack2 dse_solr=1
+1.2.5.2 dc=Data2 rack=rack1 dse_solr=1
+1.2.5.3 dc=Data2 rack=rack2 dse_solr=1

@@ -1,0 +1,4 @@
+stomp_interface: {% for host in groups['opscenter'] %}{{hostvars[host]['ansible_eth0']['ipv4']['address']}}{% endfor %}
+
+hosts: [ "{{cassandra.listen_address}}" ]
+cassandra_install_location: /usr/share/dse-{{dse.active_version}}

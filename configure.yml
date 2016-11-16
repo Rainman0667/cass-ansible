@@ -1,0 +1,18 @@
+# This playbook configures DSE in this site.
+# Configure basics
+
+# Configure and deploy DSE seed nodes
+- hosts: seeds
+  remote_user: ubuntu
+  serial: 1
+  become: true
+  roles:
+  - db-configure
+
+# Configure and deploy DSE cluster nodes
+- hosts: non_seeds
+  remote_user: ubuntu
+  serial: 1
+  become: true
+  roles:
+  - db-configure
