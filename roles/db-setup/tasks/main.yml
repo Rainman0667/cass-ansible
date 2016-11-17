@@ -29,10 +29,9 @@
            group=cassandra
   with_items: "{{dse.stage_versions}}"
 
-- name: Extracting DSE versions
-  unarchive: copy=no src=/usr/share/dse_downloads/dse-{{item}}.tar.gz dest=/usr/share/
-             owner=cassandra group=cassandra
-  with_items: "{{dse.stage_versions}}"
+- name: Extracting DSE version {{dse.active_version}}
+  unarchive: copy=no src=/usr/share/dse_downloads/dse-{{dse.active_version}}.tar.gz dest=/usr/share/
+             owner=cassandra group=cassandra keep_newer=yes
 
 - name: creating jna symlinks
   file: src=/usr/share/java/jna.jar dest=/usr/share/dse-{{item}}/resources/cassandra/lib/jna.jar

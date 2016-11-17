@@ -1,6 +1,14 @@
 # This playbook configures DSE in this site.
 # Configure basics
 
+# update factd
+- hosts: all
+  remote_user: ubuntu
+  become: true
+  roles:
+  - update-cache
+
+
 # Configure and deploy DSE seed nodes
 - hosts: seeds
   remote_user: ubuntu

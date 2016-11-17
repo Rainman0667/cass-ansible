@@ -1,7 +1,7 @@
 
 
 - name: Installing Opscenter
-  apt: pkg=opscenter state=installed update-cache=yes
+  apt: pkg=opscenter state=latest update_cache=yes cache_valid_time=3600
 
 - name: Configuring Opscenter
   template: src=opscenterd.conf.j2  dest=/etc/opscenter/opscenterd.conf
