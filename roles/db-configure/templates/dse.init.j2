@@ -53,7 +53,6 @@ CASSANDRA_USER=cassandra
 
 # limits
 ulimit -n {{limits.nofile}}
-ulimit -u {{limits.nproc}}
 ulimit -l {{limits.memlock}}
 ulimit -p {{limits.as}}
 
@@ -93,18 +92,31 @@ case "$1" in
     log_daemon_msg "Starting $DSEC"
     start-stop-daemon -S  -v -c $CASSANDRA_USER -x "$DSE_HOME/bin/dse" -d "$DSE_HOME/bin" -p $PIDFILE -- $OPTIONS -p $PIDFILE >> $OUTPUT_FILE
       log_end_msg $?
+      log_daemon_msg "Waiting for CQL Port.."
+      while ! nc -z `hostname` 9042
+      do
+        sleep 2
+      done
     ;;
 
     stop)
      log_daemon_msg "Stopping $DSEC"
+     su - cassandra -c ". ~/.profile;nodetool drain" >/dev/null 2>&1
      start-stop-daemon -K -d $DSE_HOME -p $PIDFILE -R TERM/30/KILL/5
      log_end_msg $?
     ;;
 
     restart)
+     log_daemon_msg "Restarting $DSEC"
+     su - cassandra -c ". ~/.profile;nodetool drain" >/dev/null 2>&1
      start-stop-daemon -K -d $DSE_HOME -p $PIDFILE -R TERM/30/KILL/5
      start-stop-daemon -S  -v -c $CASSANDRA_USER -x "$DSE_HOME/bin/dse" -d "$DSE_HOME/bin" -p $PIDFILE -- $OPTIONS -p $PIDFILE >>$OUTPUT_FILE
-	log_end_msg $?
+     log_end_msg $?
+     log_daemon_msg "Waiting for CQL Port.."
+     while ! nc -z `hostname` 9042
+     do
+       sleep 2
+     done
     ;;
 
     status)

@@ -9,9 +9,9 @@
     - restart opscenter
 
 - name: create directories
-  file: path=/etc/opscenter/clusters state=directory owner=cassandra group=cassandra
+  file: path=/etc/opscenter/clusters state=directory owner=opscenter group=opscenter
 
 - name: Configuring Cluster
-  template: src=cluster.conf.j2  dest=/etc/opscenter/clusters/Cluster.conf
+  template: src=cluster.conf.j2  dest=/etc/opscenter/clusters/Cluster.conf owner=opscenter group=opscenter
   notify:
     - restart opscenter

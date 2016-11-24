@@ -33,7 +33,6 @@
   unarchive: copy=no src=/usr/share/dse_downloads/dse-{{dse.active_version}}.tar.gz dest=/usr/share/
              owner=cassandra group=cassandra keep_newer=yes
 
-- name: creating jna symlinks
-  file: src=/usr/share/java/jna.jar dest=/usr/share/dse-{{item}}/resources/cassandra/lib/jna.jar
+- name: creating jna symlink
+  file: src=/usr/share/java/jna.jar dest=/usr/share/dse-{{dse.active_version}}/resources/cassandra/lib/jna.jar
         state=link owner=cassandra group=cassandra
-  with_items: "{{dse.stage_versions}}"
