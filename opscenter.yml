@@ -2,19 +2,19 @@
 # Configure basics
 # Configure and deploy DSE seed nodes
 - hosts: all
-  remote_user: ubuntu
+  remote_user: "{{creds.remote_user}}"
   become: true
   roles:
   - update-cache
 
 - hosts: opscenter
-  remote_user: ubuntu
+  remote_user: "{{creds.remote_user}}"
   become: true
   roles:
   - opscenter
 
 - hosts: seeds, non_seeds
-  remote_user: ubuntu
+  remote_user: "{{creds.remote_user}}"
   become: true
   roles:
   - agents

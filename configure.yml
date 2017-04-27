@@ -3,7 +3,7 @@
 
 # update factd
 - hosts: all
-  remote_user: ubuntu
+  remote_user: "{{creds.remote_user}}"
   become: true
   roles:
   - update-cache
@@ -11,7 +11,7 @@
 
 # Configure and deploy DSE seed nodes
 - hosts: seeds
-  remote_user: ubuntu
+  remote_user: "{{creds.remote_user}}"
   serial: 1
   become: true
   roles:
@@ -19,7 +19,7 @@
 
 # Configure and deploy DSE cluster nodes
 - hosts: non_seeds
-  remote_user: ubuntu
+  remote_user: "{{creds.remote_user}}"
   serial: 1
   become: true
   roles:

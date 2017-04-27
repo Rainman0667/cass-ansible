@@ -1,7 +1,7 @@
 # This playbook downloads DSE in this site.
 # Configure basics
 - hosts: all
-  remote_user: ubuntu
+  remote_user: "{{creds.remote_user}}"
   become: true
   roles:
   - common
@@ -9,8 +9,8 @@
 
 # Download DSE cluster nodes
 - hosts: seeds,non_seeds
-  remote_user: ubuntu
-  serial: 5
+  remote_user: "{{creds.remote_user}}"
+  serial: 1
   become: true
   roles:
   - db-setup
